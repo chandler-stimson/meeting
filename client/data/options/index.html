@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Options Page :: Meeting</title>
+</head>
+<style type="text/css">
+  input[type=text] {
+    width: 100%;
+  }
+  #signaling {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-gap: 10px;
+    white-space: nowrap;
+    align-items: center;
+  }
+</style>
+<body>
+  <div id="signaling">
+    <span>Signaling Server</span>
+    <input type="text" id="signaling-server">
+    <span>Signaling Token</span>
+    <input type="text" id="signaling-token" placeholder="leave empty to use the default token">
+  </div>
+  <p>
+    <input type="button" id="support" value="Support Development">
+    <input type="button" id="reset" value="Factory Reset"> - <input type="button" id="save" value="Save">
+    <span id="toast"></span>
+  </p>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

@@ -9,20 +9,6 @@ const GUID = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
   (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
 );
 
-class Event {
-  constructor() {
-    this.callbacks = [];
-  }
-  addListener(callback) {
-    this.callbacks.push(callback);
-  }
-  emit(...values) {
-    for (const c of this.callbacks) {
-      c(...values);
-    }
-  }
-}
-
 class Socket {
   constructor(origin, key) {
     this.key = key || atob(KEY);
@@ -57,7 +43,9 @@ class Socket {
           else {
             this.onMessage.emit(msg);
           }
-        }).catch(e => console.warn('msg is ignored', e));
+        }).catch(e => {
+          console.warn('cannot decrypt the encrypted message');
+        });
       };
     });
   }
