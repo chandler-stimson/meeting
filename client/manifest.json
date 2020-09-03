@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "Meeting",
   "description": "a secure peer-to-peer video and audio conference using WebRTC",
   "permissions": [

@@ -25,8 +25,16 @@ class Socket {
     return new Promise((resolve, reject) => {
       const socket = this.socket = new WebSocket(this.server.replace('[CHANNEL_ID]', cid));
       socket.onopen = () => {
-        resolve();
-        this.onConnectionStateChanged.emit('socket', 'ready');
+        setTimeout(() => {
+          if (socket.readyState === 1) {
+            resolve();
+            this.onConnectionStateChanged.emit('socket', 'ready');
+          }
+          else {
+            reject(Error('connection closed'));
+            this.onConnectionStateChanged.emit('socket', 'closed');
+          }
+        }, 500);
       };
       socket.onclose = () => {
         reject(Error('connection closed'));
@@ -43,8 +51,19 @@ class Socket {
           else {
             this.onMessage.emit(msg);
           }
-        }).catch(e => {
-          console.warn('cannot decrypt the encrypted message');
+        }).catch(() => {
+          try {
+            const j = JSON.parse(e.data);
+            if (j.error) {
+              alert(j.error);
+            }
+            else {
+              throw Error('message is not encrypted');
+            }
+          }
+          catch (e) {
+            console.warn('cannot decrypt the encrypted message');
+          }
         });
       };
     });

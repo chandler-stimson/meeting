@@ -58,15 +58,21 @@ body[data-mode="login"] #meeting {
 }
 body[data-count="1"] #meeting {
   grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(1, 1fr);
 }
-body[data-count="2"] #meeting,
+body[data-count="2"] #meeting {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+}
 body[data-count="3"] #meeting,
 body[data-count="4"] #meeting {
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 @media screen and (max-width: 600px) {
   body[data-count="2"] #meeting {
     grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
   }
   body[data-count="3"] video-view:first-child {
     grid-column-end: 3;
@@ -76,11 +82,13 @@ body[data-count="4"] #meeting {
 body[data-count="5"] #meeting,
 body[data-count="6"] #meeting {
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 }
 @media screen and (max-width: 600px) {
   body[data-count="5"] #meeting,
   body[data-count="6"] #meeting {
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 }
 

@@ -38,15 +38,17 @@ class Meeting {
     socket.onMessage.addListener(msg => {
       if (msg.method === 'whoami') {
         this.client(msg.sender).then(peer => {
+          peer.extra = msg.extra;
           this[INCLUDE](msg.sender, peer);
-
           socket.send({
-            method: 'whoami-reply'
+            method: 'whoami-reply',
+            extra: this.exta
           }, msg.sender);
         });
       }
       else if (msg.method === 'whoami-reply') {
         this.server(msg.sender).then(peer => {
+          peer.extra = msg.extra;
           this[INCLUDE](msg.sender, peer);
           peer.offer();
         });
@@ -181,9 +183,11 @@ class Meeting {
     });
   }
 
-  join(cid) {
+  join(cid, extra = {}) {
+    this.exta = extra;
     return this.socket.create(cid).then(() => this.socket.send({
-      method: 'whoami'
+      method: 'whoami',
+      extra
     }));
   }
 

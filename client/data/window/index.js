@@ -4,6 +4,7 @@
 
 const args = new URLSearchParams(location.search);
 
+let meeting;
 // auto-fill
 if (args.has('channel-id')) {
   document.querySelector('#join [name=channel-id]').value = args.get('channel-id');
@@ -14,7 +15,7 @@ chrome.storage.local.get({
   'signaling-server': '',
   'signaling-token': ''
 }, prefs => {
-  const meeting = new Meeting(prefs['signaling-server'], prefs['signaling-token']);
+  meeting = new Meeting(prefs['signaling-server'], prefs['signaling-token']);
 
   document.getElementById('join').addEventListener('submit', async e => {
     e.preventDefault();
@@ -26,14 +27,18 @@ chrome.storage.local.get({
     const password = e.target.querySelector('input[type=password]').value;
     await meeting.password(password);
 
-    meeting.join(cid).then(() => {
+    meeting.join(cid, { // extra info
+      nickname: Math.random()
+    }).then(() => {
       document.title = 'Joined on channel #' + cid;
       history.pushState({}, '', '?channel-id=' + cid);
-      navigator.mediaDevices.getUserMedia(configuration.media).then(stream => {
+      return navigator.mediaDevices.getUserMedia(configuration.media).then(stream => {
         document.body.dataset.mode = 'joined';
         const me = document.getElementById('me');
         me.onloadedmetadata = () => me.play();
         me.srcObject = stream;
+      }).catch(e => {
+        throw Error('Cannot access to the user media: ' + e.message);
       });
     }).catch(e => {
       document.title = 'Meeting';
