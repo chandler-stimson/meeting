@@ -6,7 +6,7 @@ chrome.storage.local.get({
   'signaling-server': '',
   'signaling-token': ''
 }, prefs => {
-  document.getElementById('signaling-server').value = prefs['signaling-server'] || 'wss://meetingserver.eu.openode.io/[CHANNEL_ID]?apiKey=[API_KEY]';
+  document.getElementById('signaling-server').value = prefs['signaling-server'] || 'wss://connect.meetingserver.repl.co/[CHANNEL_ID]?apiKey=[API_KEY]';
   document.getElementById('signaling-token').value = prefs['signaling-token'];
 });
 

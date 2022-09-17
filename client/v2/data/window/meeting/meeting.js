@@ -38,7 +38,7 @@ class Meeting {
     socket.onMessage.addListener(msg => {
       if (msg.method === 'whoami') {
         this.client(msg.sender).then(peer => {
-          peer.extra = msg.extra;
+          peer.extra = msg.extra || {};
           this[INCLUDE](msg.sender, peer);
           socket.send({
             method: 'whoami-reply',
@@ -48,7 +48,7 @@ class Meeting {
       }
       else if (msg.method === 'whoami-reply') {
         this.server(msg.sender).then(peer => {
-          peer.extra = msg.extra;
+          peer.extra = msg.extra || {};
           this[INCLUDE](msg.sender, peer);
           peer.offer();
         });

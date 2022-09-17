@@ -1,0 +1,4 @@
+.openode
+node_modules
+Dockerfile
+package.json

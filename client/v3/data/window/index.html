@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <title>Meeting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body data-mode="login" data-count="1">
+  <div id="join">
+    <h1>Welcome to Meeting!</h1>
+
+    <form>
+      <input type="number" name="channel-id" placeholder="Channel Number (1-1000)" min="1" max="1000" autofocus required>
+      <input type="password" placeholder="Password" autocomplete="off" required minlength=5>
+      <input type="submit" value="Join">
+    </form>
+  </div>
+  <label id="socket" title="If this item is checked, new peers that have the password can join this chat for the next 10 minutes. To extend, simply uncheck this box and recheck. Wait for a few seconds for all peers to re-connect to the signaling server."><input type="checkbox" checked="true">&nbsp;Allow Joining</label>
+  <div id="meeting">
+    <video-view id="me" controls="close">
+      <video muted></video>
+    </video-view>
+  </div>
+
+  <script type="text/javascript" src="event.js"></script>
+  <script type="text/javascript" src="meeting/safe.js"></script>
+  <script type="text/javascript" src="meeting/peer.js"></script>
+  <script type="text/javascript" src="meeting/meeting.js"></script>
+  <script type="text/javascript" src="extra/notify.js"></script>
+  <script type="text/javascript" src="components/video-view.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+  <script type="text/javascript" src="extra/Sortable.js"></script>
+  <script type="text/javascript" src="extra.js"></script>
+</body>
+</html>

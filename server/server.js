@@ -2,10 +2,16 @@ const KEY = Buffer.from('SFpKNlNlb1RkMDNIc1ZNNHZ0d1pmNnF1VHY2NHl1TVlmVEVOQmdvcDR
   .toString();
 
 const WebSocket = require('ws');
+const http = require('http');
 
 const wss = new WebSocket.Server({
-  port: process.env.PORT || 8000
+  port: 80 // process.env.PORT || 8000
 });
+
+http.createServer((req, res) => {
+  res.write('Server is up');
+  res.end();
+}).listen(8080);
 
 wss.on('connection', (ws, req) => {
   const {url} = req;

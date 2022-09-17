@@ -4,7 +4,8 @@ const KEY = 'SFpKNlNlb1RkMDNIc1ZNNHZ0d1pmNnF1VHY2NHl1TVlmVEVOQmdvcDR3TG9NWmh3QUN
 // const ORIGIN = 'wss://connect.websocket.in/v3/[CHANNEL_ID]?apiKey=[API_KEY]';
 // const ORIGIN = 'wss://meeting-server.herokuapp.com/[CHANNEL_ID]?apiKey=[API_KEY]';
 // const ORIGIN = 'ws://127.0.0.1:8000/[CHANNEL_ID]?apiKey=[API_KEY]';
-const ORIGIN = 'wss://meetingserver.eu.openode.io/[CHANNEL_ID]?apiKey=[API_KEY]';
+// const ORIGIN = 'wss://meetingserver.eu.openode.io/[CHANNEL_ID]?apiKey=[API_KEY]';
+const ORIGIN = 'wss://connect.meetingserver.repl.co/[CHANNEL_ID]?apiKey=[API_KEY]';
 const GUID = ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
   (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
 );

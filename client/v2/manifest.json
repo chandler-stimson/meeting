@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "version": "0.1.1",
   "name": "Meeting",
-  "description": "a secure peer-to-peer video and audio conference using WebRTC",
+  "description": "a secure peer-to-peer video and audio conference using WebRTC that works with or without INTERNET access",
   "permissions": [
     "storage"
   ],
